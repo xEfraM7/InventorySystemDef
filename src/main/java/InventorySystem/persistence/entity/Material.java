@@ -34,7 +34,6 @@ public class Material {
 
     @Column(name = "material_type_id")
     private Integer materialTypeId;
-
     @Override
     public String toString() {
         return "Material{" +
