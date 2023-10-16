@@ -17,4 +17,17 @@ public class AvailableServiceOnService {
     public List<AvailableService> getAllAvailableServices(){
         return this.availableServiceRepository.findAll();
     }
+
+    public boolean existAvailableService(int availableServiceId){
+        return this.availableServiceRepository.existsById(availableServiceId);
+    }
+
+    public AvailableService addAvailableService(AvailableService availableService){
+        return this.availableServiceRepository.save(availableService);
+    }
+
+    public void deleteAvailableService(Integer availableServiceId){
+        this.availableServiceRepository.deleteById(availableServiceId);
+    }
+
 }

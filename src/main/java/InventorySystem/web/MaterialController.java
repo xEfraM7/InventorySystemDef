@@ -46,7 +46,7 @@ public class MaterialController {
     //ACTIONS WITH PUT METHOD
     @PutMapping("/edit-material")
     public ResponseEntity<Material> updateMaterial(@RequestBody Material material){
-        if (material.getMaterialId() != null || this.materialService.existMaterial(material.getMaterialId())) {
+        if (material.getMaterialId() != null && this.materialService.existMaterial(material.getMaterialId())) {
             return ResponseEntity.ok(this.materialService.addMaterial(material));
         }
         return ResponseEntity.badRequest().build();

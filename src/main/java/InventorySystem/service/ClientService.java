@@ -15,8 +15,24 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
+    public boolean existClient(int clientId){
+        return this.clientRepository.existsById(clientId);
+    }
+
     public List<Client>getAllClients(){
         return this.clientRepository.findAll();
+    }
+
+    public List<Client>getAllClientsByFirstName(String firstName){
+        return this.clientRepository.findAllByfirstNameContainingIgnoreCase(firstName);
+    }
+
+    public Client addClient(Client client){
+        return this.clientRepository.save(client);
+    }
+
+    public void deleteClient(Integer clientId){
+        this.clientRepository.deleteById(clientId);
     }
 
 }
