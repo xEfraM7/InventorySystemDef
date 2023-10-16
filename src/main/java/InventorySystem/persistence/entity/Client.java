@@ -1,10 +1,13 @@
 package InventorySystem.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,5 +37,9 @@ public class Client {
 
     @Column(name = "cellphone", length = 50)
     private String cellphone;
+
+    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<DeliveryOrder> deliveryOrders;
 
 }

@@ -1,10 +1,13 @@
 package InventorySystem.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,5 +25,9 @@ public class PaymentMethod {
 
     @Column(name = "payment_method", nullable = false)
     private String paymentMethod;
+
+    @OneToMany(mappedBy = "paymentMethod",fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<DeliveryOrder> deliveryOrders;
 
 }

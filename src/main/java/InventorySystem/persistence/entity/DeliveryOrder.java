@@ -1,10 +1,13 @@
 package InventorySystem.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,10 +32,23 @@ public class DeliveryOrder {
     @Column(name = "client_id")
     private Integer clientId;
 
-    @Column(name = "material_id")
-    private Integer materialId;
-
     @Column(name = "available_service_id")
     private Integer availableServiceId;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "payment_method_id",referencedColumnName = "payment_method_id",insertable = false,updatable = false)
+    private PaymentMethod paymentMethod;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "client_id",referencedColumnName = "client_id",insertable = false,updatable = false)
+    private Client client;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "available_service_id",referencedColumnName = "available_service_id",insertable = false,updatable = false)
+    private AvailableService availableService;
+
 
 }

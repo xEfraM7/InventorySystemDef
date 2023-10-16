@@ -1,13 +1,14 @@
 package InventorySystem.persistence.projection;
 
+import InventorySystem.persistence.repository.DeliveryOrderRepository;
+
 import java.math.BigDecimal;
 
-public interface OrderSummary {
+public interface OrderSummary{
     Integer getDeliveryOrderId();
     String getDescriptionDeliveryOrder();
     String getPaymentMethod();
     String getClientFullName();
-    String getAvailableService();
+    String getAvailableServiceName();
     BigDecimal getAvailableServiceCost();
-    String getMaterialName();
 }

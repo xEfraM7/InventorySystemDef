@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,6 +35,15 @@ public class Material {
 
     @Column(name = "material_type_id")
     private Integer materialTypeId;
+
+    @Column(name = "available_service_id")
+    private Integer availableServiceId;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "available_service_id",referencedColumnName = "available_service_id",insertable = false,updatable = false)
+    private AvailableService availableService;
+
     @Override
     public String toString() {
         return "Material{" +

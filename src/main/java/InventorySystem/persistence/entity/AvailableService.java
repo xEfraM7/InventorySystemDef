@@ -1,5 +1,6 @@
 package InventorySystem.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,5 +29,12 @@ public class AvailableService {
 
     @Column(name = "service_cost", precision = 10, scale = 2)
     private BigDecimal serviceCost;
+
+    @OneToMany(mappedBy = "availableService",fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<DeliveryOrder> deliveryOrders;
+
+    @OneToMany(mappedBy = "availableService",fetch = FetchType.EAGER)
+    private List<Material> materials;
 
 }

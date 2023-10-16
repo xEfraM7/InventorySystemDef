@@ -18,7 +18,7 @@ public class AvailableServiceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AvailableService>> getAllClients(){
+    public ResponseEntity<List<AvailableService>> getAllAvailableServices(){
         return ResponseEntity.ok(this.availableServiceOnService.getAllAvailableServices());
     }
     @PostMapping("/add-available-service")
