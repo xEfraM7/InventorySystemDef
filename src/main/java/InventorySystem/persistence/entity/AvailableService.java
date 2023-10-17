@@ -24,6 +24,7 @@ public class AvailableService {
     @Column(name = "available_service_id", nullable = false)
     private Integer availableServiceId;
 
+
     @Column(name = "service_name", length = 50)
     private String serviceName;
 

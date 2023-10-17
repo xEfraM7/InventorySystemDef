@@ -5,6 +5,7 @@ import InventorySystem.persistence.projection.OrderSummary;
 import InventorySystem.service.DeliveryOrderService;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class DeliveryOrderController {
     }
 
     @PostMapping
-    public DeliveryOrder saveNewOrder(@RequestBody DeliveryOrder deliveryOrder){
+    public DeliveryOrder saveNewOrder(@Valid @RequestBody DeliveryOrder deliveryOrder){
         return this.deliveryOrderService.saveNewOrder(deliveryOrder);
     }
 
