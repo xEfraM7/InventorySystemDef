@@ -4,9 +4,7 @@ package InventorySystem.web;
 import InventorySystem.persistence.entity.Material;
 import InventorySystem.service.MaterialService;
 import jakarta.validation.Valid;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -41,17 +39,16 @@ public class MaterialController {
 
     //ACTIONS WITH POST METHODS
     @PostMapping("/add-material")
-    public ResponseEntity<Material> addMaterial(@Valid @RequestBody Material material, BindingResult bindingResult) {
+    public ResponseEntity<Material> addMaterial(@RequestBody Material material) {
         if (material.getMaterialId() == null || !this.materialService.existMaterial(material.getMaterialId())) {
             return ResponseEntity.ok(this.materialService.addMaterial(material));
         }
-        throw new RuntimeException("Valida los campos");
-        /*return ResponseEntity.badRequest().build();*/
+        return ResponseEntity.badRequest().build();
     }
 
     //ACTIONS WITH PUT METHOD
     @PutMapping("/edit-material")
-    public ResponseEntity<Material> updateMaterial(@Valid @RequestBody Material material,BindingResult bindingResult){
+    public ResponseEntity<Material> updateMaterial(@RequestBody Material material,BindingResult bindingResult){
         if (material.getMaterialId() != null && this.materialService.existMaterial(material.getMaterialId())) {
             return ResponseEntity.ok(this.materialService.addMaterial(material));
         }
